@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useFormik } from 'formik';
+import axios from "axios";
 import * as yup from 'yup';
 import "./Login.css";
 
@@ -78,7 +79,7 @@ export default function Login(props) {
               value={formik.values.password}
               onChange={formik.handleChange} />
             <div className="error">{formik.touched.password && formik.errors.password}</div>
-            <div className="error">{err}</div></label>
+            </label>
 
 
           <button to="/" type="submit" className="loginBtn a">Login</button>

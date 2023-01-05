@@ -34,19 +34,7 @@ export default function Profile() {
       <div className="mainCenter">
         <Rightbar/>
         
-        <Feed 
-      submitHandler={submitHandler}
-      updateData={updateData}
-      setFile={setFile} 
-      deleteData={deleteData} 
-      posts={posts} 
-      value={value} 
-      setPosts={setPosts} 
-      setValue={setValue}
-      edit={edit}
-      editing={editing}
-      setEditing={setEditing}
-      />
+        <Feed/>
 
       </div>
 

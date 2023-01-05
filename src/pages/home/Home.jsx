@@ -3,8 +3,6 @@ import Feed from '../../component/Feed/Feed'
 import Navbar from '../../component/Navbar/Navbar'
 import Rightbar from '../../component/Rightbar/Rightbar'
 import Sidebar from '../../component/Sidebar/Sidebar'
-import { useFormik } from 'formik';
-import * as yup from 'yup';
 import "./Home.css"
 
 export default function Home(props) {
@@ -14,22 +12,10 @@ export default function Home(props) {
 
   return (
     <div className="App">
-    <Navbar  signOut={signOut}/>
+    <Navbar />
     <div className="homeContainer">
       <Sidebar username={"zaid"}/>
-      <Feed 
-      submitHandler={props.submitHandler}
-      updateData={props.updateData}
-      setFile={props.setFile} 
-      deleteData={props.deleteData} 
-      posts={props.posts} 
-      value={props.value} 
-      setPosts={props.setPosts} 
-      setValue={props.setValue}
-      edit={props.edit}
-      editing={props.editing}
-      setEditing={props.setEditing}
-      />
+      <Feed />
       <Rightbar/>
     </div>
   </div>

@@ -43,7 +43,7 @@ const formik3 = useFormik({
               value={formik3.values.email}
               onChange={formik3.handleChange} />
             <div className="error">{formik3.touched.email && formik3.errors.email}</div>
-            <div className="green error">{err}</div></label>
+            </label>
 
           <button to="/" type="submit" className="loginBtn a">Send link</button>
 

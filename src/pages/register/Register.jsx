@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useFormik } from 'formik';
+import axios from "axios";
 import * as yup from 'yup';
 import "./Register.css";
 
@@ -27,7 +28,7 @@ export default function Register(props) {
         .min(8, 'Password should be of minimum 8 characters length')
         .required('Password is required'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
 
       let obj={
          firstName: values.username,
@@ -97,7 +98,6 @@ export default function Register(props) {
               value={formik1.values.password}
               onChange={formik1.handleChange} />
             <div className="error">{formik1.touched.password && formik1.errors.password}</div>
-            <div className="error">{err}</div>
             </label>
 
             <button className="loginBtn a" type="submit">Sign Up</button>

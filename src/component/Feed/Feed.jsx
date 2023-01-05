@@ -1,11 +1,13 @@
 import { Close, Done, Edit, InsertEmoticon, MoreHoriz, PhotoLibrary, VideoCall } from "@mui/icons-material"
 import moment from 'moment'
+
+import axios from "axios"
 import { Comment, Delete, Favorite, Share, ThumbUp } from '@mui/icons-material'
 import "../post/Post.css"
 import "./Feed.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function Feed() {
+export default function Feed(props) {
 
     
     // usestates
@@ -25,7 +27,7 @@ export default function Feed() {
 
         const getAllPosts = async () => {
             try {
-                const response = await axios.get(`${state.baseUrl}/tweets`)
+                const response = await axios.get(`${props.baseUrl}/tweets`)
                 console.log("response: ", response.data);
                 setPosts(response.data.data)
     
@@ -92,7 +94,7 @@ export default function Feed() {
     const updateData = async (e) => {
       e.preventDefault();
       axios.put(`${props.baseUrl}/tweet/${editing.editingId}`, {
-        text: editingText,
+        text: editing.editingText,
     })
         .then(response => {
             console.log("post updated sucessfully ");
@@ -162,13 +164,13 @@ export default function Feed() {
                                 <MoreHoriz className="dropbtn" style={{ fontSize: 25 }} />
                                 <div id="myDropdown" className="dropdown-content">
                                     <div className="flex">
-                                        <button className="del color9" onClick={() => { deleteData(eachpost.id) }}>Delete <Delete /></button>
+                                        <button className="del color9" onClick={() => { deleteData(eachpost._id) }}>Delete <Delete /></button>
                                         <hr />
 
 
                                         <button className="del color10" onClick={
                                             () => {
-                                                edit(eachpost.id, eachpost.text)
+                                                edit(eachpost._id, eachpost.text)
                                             }}
                                         >Edit <Edit /></button>
 
@@ -181,7 +183,7 @@ export default function Feed() {
                             <div className="titleBox1">
                                 <div className="title2"><img src="../../../assets/dp.jpg" className='icon2' alt="" />
                                     <span>
-                                        <div className='bold'>Zayan Ahmed</div>
+                                        <div className='bold'>{eachpost?.owner}</div>
                                         <div>{moment(eachpost?.createdOn).fromNow()}</div>
                                     </span>
                                 </div>
@@ -203,12 +205,12 @@ export default function Feed() {
                             </div> :
                                 <p className='para'>{eachpost?.text}</p>}
 
-                            {(eachpost.picUrl) ? <div className="container">
-                                <img src={eachpost.picUrl} alt="" className="image" />
+                            {(eachpost.url) ? <div className="container">
+                                <img src={eachpost.url} alt="" className="image" />
                             </div> : null}
 
                             <div className="titleBox">
-                                <div className="title"><span><ThumbUp className='color6' /><Favorite className='color7' />{eachpost.like} Likes</span>  <span>{eachpost.comment} Comments</span></div>
+                                <div className="title"><span><ThumbUp className='color6' /><Favorite className='color7' />0 Likes</span>  <span>0 Comments</span></div>
                                 {/* <hr /> */}
                                 <div className="date">
                                     <span className='span'><ThumbUp className='com'/>Like</span>
