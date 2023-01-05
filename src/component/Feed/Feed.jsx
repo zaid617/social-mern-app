@@ -10,7 +10,8 @@ export default function Feed() {
     
     // usestates
 
-    let [userId, setUserId] = useState(" ")
+
+    let [newPost, setNewPost] = useState(false);
     let [value, setValue] = useState("");
     let [posts, setPosts] = useState([]);
     let [file, setFile] = useState(null);
@@ -19,6 +20,26 @@ export default function Feed() {
       editingText: ""
     })
 
+
+    useEffect(() => {
+
+        const getAllPosts = async () => {
+            try {
+                const response = await axios.get(`${state.baseUrl}/tweets`)
+                console.log("response: ", response.data);
+                setPosts(response.data.data)
+    
+            } catch (error) {
+                console.log("error in getting all tweets", error);
+            }
+        }
+
+        getAllPosts()
+
+    }, [newPost])
+
+
+    // posting function
 
     const submitHandler = () => {
     
@@ -34,22 +55,35 @@ export default function Feed() {
           })
           .then(async res => {
             console.log("from then", res.data);
-    
-    
-    
+
+            axios.post(`${props.baseUrl}/tweet`, {
+                text: value,
+                url: file,
+            })
+                .then(response => {
+                    console.log("response: ", response.data);
+                    setNewPost(!newPost)
+                })
+                .catch(err => {
+                    console.log("error: ", err);
+                })
           })
           .catch(async err => {
             console.log("from catch", err);
-    
-    
           })
-    
       }
-    
-  
+
     // delete post 
   
     const deleteData = async (id) => {
+        try {
+            const response = await axios.delete(`${props.baseUrl}/tweet/${id}`)
+            console.log("response: ", response.data);
+            setNewPost(!newPost)
+
+        } catch (error) {
+            console.log("error in getting all tweets", error);
+        }
   
     }
   
@@ -57,6 +91,16 @@ export default function Feed() {
   
     const updateData = async (e) => {
       e.preventDefault();
+      axios.put(`${props.baseUrl}/tweet/${editing.editingId}`, {
+        text: editingText,
+    })
+        .then(response => {
+            console.log("post updated sucessfully ");
+            setNewPost(!newPost)
+        })
+        .catch(err => {
+            console.log("error: ", err);
+        })
   
     }
     
