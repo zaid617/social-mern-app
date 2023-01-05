@@ -1,0 +1,66 @@
+.cover{
+    position: relative;
+}
+.coverImg{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    opacity: 0.7;
+}
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 150px;
+}
+
+.mainCenter{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.info h3{
+    position: absolute;
+    left: 77px;
+    width: max-content;
+    top: 5px;
+    font-size: 35px;
+}
+
+.dpImg1{
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    top:-150px;
+    left: 45px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.infoBox{
+    font-size: 20px;
+}
+
+
+.nameBox1{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media screen and (max-width:500px) {
+    .dpImg1{
+        left: 35%;
+    }
+    .info h3{
+        font-size: 25px;
+        left: 45px;
+    }
+
+    .infoBox{
+        display: none;
+    }
+}

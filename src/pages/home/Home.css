@@ -1,0 +1,21 @@
+.homeContainer{
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.App{
+    width: 100%;
+}
+
+@media screen and (max-width:900px) {
+    .App{
+        width: max-content;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .App{
+        width: 100%;
+    }
+}

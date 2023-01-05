@@ -1,0 +1,149 @@
+.sideBar {
+    height: max-content;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.3rem;
+    font-weight: 400;
+    overflow-y: scroll;
+    height: 90vh;
+}
+
+.sticky {
+    flex: 3;
+    position: sticky;
+    top: 80px;
+    height: 90vh;
+}
+
+.sideBar::-webkit-scrollbar-thumb {
+    background-color: #ededed;
+    opacity: 0.4;
+
+}
+
+.sideBar:hover::-webkit-scrollbar {
+    width: 6px;
+    background-color: #c9c9c9;
+    opacity: 0.4;
+}
+
+.sideBar:hover::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    opacity: 0.4;
+
+}
+
+.bottom {
+    width: 100%;
+    margin: 5px;
+}
+
+.category {
+    width: 80%;
+}
+
+.category ul {
+    list-style: none;
+    margin: 20px;
+    cursor: pointer;
+}
+
+
+.category ul li {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    font-size: 17px;
+    border: 1px solid #ededed;
+
+}
+
+.list {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    font-size: 17px;
+    border: 1px solid #ededed;
+
+}
+
+.ul :hover {
+    border-bottom: 1px solid rgb(26 127 244);
+    color: rgb(26 127 244);
+}
+
+.category ul li :hover {
+    border: none;
+}
+
+.category ul li span {
+    padding: 5px;
+    width: max-content;
+}
+
+.icon {
+    height: 35px;
+    border-radius: 50%;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .category ul li {
+        font-size: 17px;
+        padding: 3px;
+    }
+
+    .h3 {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .category ul li {
+        font-size: 15px;
+        padding: 2px;
+    }
+
+    .category {
+        padding: 20px;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    .sideBar {
+        flex: 30%;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+    .h3 {
+        font-size: 1rem;
+    }
+
+    .sideBar {
+        flex: 30%;
+        margin: 10px;
+    }
+
+    .category ul li {
+        font-size: 0.6rem;
+    }
+
+    .icon {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .sideBar {
+        display: none;
+    }
+}
