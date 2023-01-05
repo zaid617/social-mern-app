@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import { useFormik } from 'formik';
 import axios from "axios";
 import * as yup from 'yup';
+import { GlobalContext } from '../../context/Context';
 import "./Login.css";
+import { useContext } from "react";
 
 export default function Login(props) {
 
+  let { state, dispatch } = useContext(GlobalContext);
 
     // using formik for login 
 
@@ -33,9 +36,16 @@ export default function Login(props) {
           withCredentials: true
       })
       console.log("login successful");
+      dispatch({
+        type: 'USER_LOGIN',
+        payload: response.data
+      })
 
-  }      catch (e) {
+  }catch (e) {
       console.log("login error");
+      dispatch({
+        type: 'USER_LOGOUT'
+      })
   }
   
     }})

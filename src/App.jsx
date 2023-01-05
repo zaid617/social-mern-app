@@ -1,4 +1,4 @@
-import { useEffect, useState , useContext } from 'react';
+import { useEffect , useContext } from 'react';
 import axios from 'axios';
 import './App.css';
 import Home from './pages/home/Home';
@@ -16,7 +16,7 @@ function App() {
   let { state, dispatch } = useContext(GlobalContext);
 
 
-  const baseUrl = "https://social-mern-server-production.up.railway.app"
+  const baseUrl = "https://social-mern-server-production.up.railway.app/api/v1"
 
   useEffect(() => {
 
@@ -50,7 +50,7 @@ function App() {
     }
     getProfile();
 
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
 
@@ -80,7 +80,7 @@ function App() {
       }
       return Promise.reject(error);
     });
-  }, [])
+  }, [dispatch])
 
 
 
