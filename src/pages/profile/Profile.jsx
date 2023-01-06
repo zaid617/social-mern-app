@@ -6,9 +6,11 @@ import Rightbar from "../../component/Rightbar/Rightbar"
 import axios from "axios"
 import { GlobalContext } from '../../context/Context';
 
-export default function Profile() {
+export default function Profile(props) {
   
   let { state, dispatch } = useContext(GlobalContext);
+
+  const baseUrl = props.baseUrl
 
 
   // user signout
@@ -16,7 +18,7 @@ export default function Profile() {
  const signout = async(props)=> {
 
   try {
-    let response = await axios.post(`${props.baseUrl}/logout`,
+    let response = await axios.post(`${baseUrl}/logout`,
       {},
       {
         withCredentials: true
@@ -45,7 +47,7 @@ export default function Profile() {
       <div className="info">
         <div className="nameBox1">
           <img src="../../../assets/dp.jpg" alt="" className="dpImg1" />
-          <h3>{"add user"}</h3>
+          <h3>{state?.user?.firstName}</h3>
         </div>
       </div>
       <hr />

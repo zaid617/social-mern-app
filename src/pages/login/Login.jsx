@@ -3,8 +3,8 @@ import { useFormik } from 'formik';
 import axios from "axios";
 import * as yup from 'yup';
 import { GlobalContext } from '../../context/Context';
-import "./Login.css";
 import { useContext } from "react";
+import "./Login.css";
 
 export default function Login(props) {
 
