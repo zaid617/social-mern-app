@@ -7,7 +7,7 @@ import "../post/Post.css"
 import "./Feed.css"
 import { useState, useEffect } from "react"
 
-export default function Feed(props) {
+export default function Feed1(props) {
 
     
     // usestates
@@ -27,14 +27,16 @@ export default function Feed(props) {
 
         const getAllPosts = async () => {
             try {
-                const response = await axios.get(`${props.baseUrl}/tweets`)
+                const response = await axios.get(`${props.baseUrl}/tweetFeed`)
                 console.log("response: ", response.data);
+    
                 setPosts(response.data.data)
     
             } catch (error) {
                 console.log("error in getting all tweets", error);
             }
         }
+    
 
         getAllPosts()
 

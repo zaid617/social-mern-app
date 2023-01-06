@@ -1,5 +1,5 @@
 import React from 'react'
-import Feed from '../../component/Feed/Feed'
+import Feed1 from '../../component/Feed/Feed1'
 import Navbar from '../../component/Navbar/Navbar'
 import Rightbar from '../../component/Rightbar/Rightbar'
 import Sidebar from '../../component/Sidebar/Sidebar'
@@ -15,7 +15,7 @@ export default function Home(props) {
     <Navbar />
     <div className="homeContainer">
       <Sidebar username={"zaid"}/>
-      <Feed />
+      <Feed1 />
       <Rightbar/>
     </div>
   </div>
