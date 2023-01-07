@@ -189,7 +189,7 @@ export default function Feed(props) {
                                 </div>
                             </div>
 
-                            {(eachpost.id === editing.editingId) ? <div className="divForm" >
+                            {(eachpost._id === editing.editingId) ? <div className="divForm" >
                                 <div className="pos">
                                     <label htmlFor="" className="label">
                                         <input type="text" className="editText" value={editing.editingText} onChange={(e) => {
@@ -205,7 +205,7 @@ export default function Feed(props) {
                             </div> :
                                 <p className='para'>{eachpost?.text}</p>}
 
-                            {(eachpost.url) ? <div className="container">
+                            {(eachpost?.url) ? <div className="container">
                                 <img src={eachpost.url} alt="" className="image" />
                             </div> : null}
 

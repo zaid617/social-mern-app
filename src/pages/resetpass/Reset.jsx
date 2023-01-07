@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from "axios";
 import "./Reset.css"
 
-export default function Reset() {
+export default function Reset(props) {
+
 
   // reset pass link
 
@@ -17,7 +19,20 @@ const formik3 = useFormik({
       .email('Enter a valid email')
       .required('Email is required'),
   }),
-  onSubmit: (values) => {
+  onSubmit: async(values) => {
+
+    try {
+      let response = await axios.post(`${props.baseUrl}/forget-password`, {
+          email: values.email
+      }, {
+          withCredentials: true
+      })
+
+      console.log(response.data.message);
+
+  } catch (e) {
+      console.log("e: ", e);
+  }
 
   },
 })

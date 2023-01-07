@@ -15,7 +15,7 @@ export default function Home(props) {
 
   const baseUrl = props.baseUrl
 
-  const signout = async(props)=> {
+  const signout = async()=> {
 
     try {
       let response = await axios.post(`${baseUrl}/logout`,
@@ -39,7 +39,7 @@ export default function Home(props) {
     <div className="App">
     <Navbar signout={signout}/>
     <div className="homeContainer">
-      <Sidebar username={state?.user?.firstName}/>
+      <Sidebar username={state.user?.firstName}/>
       <Feed1 />
       <Rightbar/>
     </div>
