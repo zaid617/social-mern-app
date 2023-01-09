@@ -35,8 +35,8 @@ export default function Navbar(props) {
             <div className="dropbtn1" onClick={nameOfClass}>{(show)?<Close style={{ fontSize: 20 }} className='iconsm'/>:<img src="../../../assets/dp.jpg" alt="" className='iconDp'/>}</div>
             <div id="myDropdown1" className={`dropdown-content1 ${(show)? "show1" : ""}`} >
               <Link to="profile" className='text-align li'>Profile</Link>
+              <Link className='li' to="changePass">change Password </Link>
               <li className='li' >Settings & Privacy</li>
-              <li className='li' >Feed back</li>
               <li className='li' >FAQs</li>
               <li className='li' onClick={props.signOut}>Logout</li>
             </div>

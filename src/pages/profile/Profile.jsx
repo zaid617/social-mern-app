@@ -35,7 +35,6 @@ export default function Profile(props) {
 
 }
 
-// h3 may name abhi constant h usy change krna h context se
 
 
   return (

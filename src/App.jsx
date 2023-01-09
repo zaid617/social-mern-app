@@ -8,6 +8,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Profile from './pages/profile/Profile';
 import Reset from './pages/resetpass/Reset';
 import { GlobalContext } from './context/Context';
+import ChangePass from './pages/changePass/ChangePass';
 
 
 
@@ -99,6 +100,7 @@ function App() {
             <Profile baseUrl={baseUrl}/>
 
           } />
+          <Route path="changePass" element={<ChangePass/>} baseUrl={baseUrl} />
           <Route path="*" element={<Navigate to={"/"} replace="true" />} />
 
         </Routes>
