@@ -18,7 +18,7 @@ export default function ChangePass(props) {
         e.preventDefault();
 
         try {
-            let response = await axios.post(`${state.baseUrl}/change-password`, {
+            let response = await axios.post(`${props.baseUrl}/change-password`, {
                 currentPassword: currentPassword,
                 password: password
             }, {
@@ -39,7 +39,7 @@ export default function ChangePass(props) {
 
   return (
     <>
-    <h4>This is ChangePassword page</h4>
+    <h4>Change Password</h4>
 
     <form onSubmit={proceedChangePassword} className="loginForm">
 
