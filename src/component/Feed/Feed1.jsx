@@ -1,18 +1,18 @@
-import { Close, Done, Edit, InsertEmoticon, MoreHoriz, PhotoLibrary, VideoCall } from "@mui/icons-material"
+import { Close, Done, Edit, MoreHoriz, PhotoLibrary, VideoCall } from "@mui/icons-material"
 import moment from 'moment'
-
 import axios from "axios"
 import { Comment, Delete, Favorite, Share, ThumbUp } from '@mui/icons-material'
 import "../post/Post.css"
 import "./Feed.css"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { GlobalContext } from "../../context/Context"
 
 export default function Feed1(props) {
 
     
     // usestates
 
-
+    let {state , dispatch} = useContext(GlobalContext)
     let [newPost, setNewPost] = useState(false);
     let [value, setValue] = useState("");
     let [posts, setPosts] = useState([]);
@@ -27,7 +27,7 @@ export default function Feed1(props) {
 
         const getAllPosts = async () => {
             try {
-                const response = await axios.get(`${props.baseUrl}/tweetFeed`)
+                const response = await axios.get(`${state.baseUrl}/tweets`)
                 console.log("response: ", response.data);
     
                 setPosts(response.data.data)
@@ -40,53 +40,91 @@ export default function Feed1(props) {
 
         getAllPosts()
 
-    }, [newPost, props.baseUrl])
+    }, [newPost])
 
 
     // posting function
 
-    const submitHandler = () => {
-    
-        console.log("start");
-        const cloudinaryData = new FormData();
-        cloudinaryData.append("file", file);
-        cloudinaryData.append("upload_preset", "postPic");
-        cloudinaryData.append("cloud_name", "dahfjrq6m");
-        console.log(cloudinaryData);
-        axios.post(`https://api.cloudinary.com/v1_1/dahfjrq6m/image/upload`, cloudinaryData,
-          {
-            headers: { "Content-Type": "multipart/form-data" }
-          })
-          .then(async res => {
-            console.log("from then", res.data);
+    const submitHandler = (e) => {
 
-            axios.post(`${props.baseUrl}/tweet`, {
-                text: value,
-                url: file,
+        e.preventDefault();
+
+        
+        let fileInput = document.getElementById("image").files[0];
+        let textInput = document.getElementById("text");
+
+        if(fileInput){
+    
+            let formData = new FormData();
+    
+            formData.append("myFile", fileInput);
+            formData.append("text", textInput.value);
+            formData.append("ownerName", state.user.firstName);
+            formData.append("owner", state.user._id);
+
+
+        axios({
+            method: "post",
+            url: `${state.baseUrl}/tweet`,
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+            .then((res) => {
+              setNewPost(!newPost)
+              console.log(res);
+               document.getElementById("image").value = "";
+               document.getElementById("text").value = "";
             })
-                .then(response => {
-                    console.log("response: ", response.data);
-                    setNewPost(!newPost)
+            .catch((err) => {
+              console.log(err.response.data.message);
+            });
+
+        }
+
+        else{
+
+            let formData = new FormData();
+            formData.append("text", textInput.value);
+            formData.append("ownerName", state.user.firstName);
+            formData.append("owner", state.user._id);
+            
+    
+            axios({
+
+                method: "post",
+                url: `${state.baseUrl}/tweetText`,
+                data: formData,
+                headers: { "Content-Type": "application/json" },
+                withCredentials:true,
+
+              })
+                .then((res) => {
+
+                  setNewPost(!newPost);
+                  console.log(res);
+                  document.getElementById("image").value = "";
+                  document.getElementById("text").value = "";
+
                 })
-                .catch(err => {
-                    console.log("error: ", err);
-                })
-          })
-          .catch(async err => {
-            console.log("from catch", err);
-          })
+                .catch((err) => {
+                  console.log(err.response.data.message);
+                });
+
+        }
+
       }
 
     // delete post 
   
     const deleteData = async (id) => {
+        console.log(id);
         try {
-            const response = await axios.delete(`${props.baseUrl}/tweet/${id}`)
+            const response = await axios.delete(`${state.baseUrl}/tweet/${id}`)
             console.log("response: ", response.data);
             setNewPost(!newPost)
 
         } catch (error) {
-            console.log("error in getting all tweets", error);
+            console.log("error in delete tweet", error);
         }
   
     }
@@ -95,7 +133,7 @@ export default function Feed1(props) {
   
     const updateData = async (e) => {
       e.preventDefault();
-      axios.put(`${props.baseUrl}/tweet/${editing.editingId}`, {
+      axios.put(`${state.baseUrl}/tweet/${editing.editingId}`, {
         text: editing.editingText,
     })
         .then(response => {
@@ -136,24 +174,24 @@ export default function Feed1(props) {
     return (
         <div className='feed'>
             <div className="main"  >
-                <div className="upload">
+                <form onSubmit={submitHandler} className="upload">
                     <div className="inputBox">
                         <img src="../../../assets/dp.jpg" alt="" />
-                        <input type="text" placeholder="What's in your mind?" className="cursor" value={value} onChange={(e) => { setValue(e.target.value) }} />
+                        <input type="text" placeholder="What's in your mind?" className="cursor" id="text" />
                     </div>
                     <hr />
                     <div className="btns">
                         <button className="btnUpload"><span><VideoCall style={{ fontSize: 30 }} className="color1" /></span><span>Live Video</span></button>
                         <label className="btnUpload">
-                            <PhotoLibrary className="color2" />Photos<input onChange={(e) => { setFile(e.currentTarget.files[0]) }} type="file" style={{ display: "none" }} name="image" />
+                            <PhotoLibrary className="color2" />Photos<input id="image" type="file" style={{ display: "none" }} name="image" />
                         </label>
 
                         {/* <button className="btnUpload"><span><InsertEmoticon style={{ fontSize: 30 }} className="color3" /></span><span>Feeling</span></button> */}
 
 
-                        <button className="color4"  onClick={submitHandler} >Post</button>
+                        <button className="color4"  type="submit" >Post</button>
                     </div>
-                </div>
+                </form>
             </div>
             <hr />
 
@@ -185,7 +223,7 @@ export default function Feed1(props) {
                             <div className="titleBox1">
                                 <div className="title2"><img src="../../../assets/dp.jpg" className='icon2' alt="" />
                                     <span>
-                                        <div className='bold'>{eachpost?.owner}</div>
+                                        <div className='bold'>{eachpost?.ownerName}</div>
                                         <div>{moment(eachpost?.createdOn).fromNow()}</div>
                                     </span>
                                 </div>
@@ -207,12 +245,12 @@ export default function Feed1(props) {
                             </div> :
                                 <p className='para'>{eachpost?.text}</p>}
 
-                            {(eachpost?.url) ? <div className="container">
-                                <img src={eachpost.url} alt="" className="image" />
+                            {(eachpost?.imageUrl) ? <div className="container">
+                                <img src={eachpost.imageUrl} alt="" className="image" />
                             </div> : null}
 
                             <div className="titleBox">
-                                <div className="title"><span><ThumbUp className='color6' /><Favorite className='color7' />0 Likes</span>  <span>0 Comments</span></div>
+                                <div className="title"><span><ThumbUp className='color6' />0 Likes</span>  <span>0 Comments</span></div>
                                 {/* <hr /> */}
                                 <div className="date">
                                     <span className='span'><ThumbUp className='com'/>Like</span>

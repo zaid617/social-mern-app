@@ -6,7 +6,7 @@ import { GlobalContext } from '../../context/Context';
 import { useContext } from "react";
 import "./Login.css";
 
-export default function Login(props) {
+export default function Login() {
 
   let { state, dispatch } = useContext(GlobalContext);
 
@@ -29,16 +29,17 @@ export default function Login(props) {
       }),
       onSubmit: async (values) => {
       try{
-        let response = await axios.post(`${props.baseUrl}/login`, {
+        let response = await axios.post(`${state.baseUrl}/login`, {
           email: values.email,
           password: values.password
       }, {
           withCredentials: true
       })
       console.log("login successful");
+      console.log(response.data);
       dispatch({
         type: 'USER_LOGIN',
-        payload: response.data
+        payload: response.data.profile
       })
 
   }catch (e) {

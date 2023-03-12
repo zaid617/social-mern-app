@@ -7,6 +7,16 @@ let data = {
   darkTheme: true,
   user: {},
   isLogin: null,
+  baseUrl: 
+  (window.location.href.split(":")[0] === "http")
+    
+   ? "http://localhost:5001/api/v1"
+   
+  :
+
+  "https://social-media-mern-project.netlify.app/api/v1"
+
+
 }
 
 export default function ContextProvider({ children }) {

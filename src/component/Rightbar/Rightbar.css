@@ -7,8 +7,6 @@
     align-items: center;
     justify-content: flex-start;
     margin: 5px;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
     overflow-y: hidden;
     position: sticky;
     top: 80px;

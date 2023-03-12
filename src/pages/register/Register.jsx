@@ -3,8 +3,12 @@ import { useFormik } from 'formik';
 import axios from "axios";
 import * as yup from 'yup';
 import "./Register.css";
+import { useContext } from "react";
+import { GlobalContext } from "../../context/Context";
 
-export default function Register(props) {
+export default function Register() {
+
+  let {state , dispatch} = useContext(GlobalContext)
 
    // using formik for signUP 
 
@@ -37,11 +41,11 @@ export default function Register(props) {
       }
 
       try {
-        let response = await axios.post(`${props.baseUrl}/signup`, obj)
+        let response = await axios.post(`${state.baseUrl}/signup`, obj)
         console.log("signup successful");
       } 
       catch (e) {
-        console.log(e.response?.data?.message)
+        console.log(e)
         console.log("signup fail")
         
         }

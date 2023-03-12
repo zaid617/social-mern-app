@@ -20,6 +20,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin-top: 50px;
 }
 .info h3{
     position: absolute;

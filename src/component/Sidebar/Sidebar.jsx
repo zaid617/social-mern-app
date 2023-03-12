@@ -1,11 +1,15 @@
 
+import { useContext } from "react"
+import { GlobalContext } from "../../context/Context"
 import "./Sidebar.css"
 
 
 
 
 
-export default function Sidebar(props) {
+export default function Sidebar() {
+
+  let {state , dispatch} = useContext(GlobalContext) 
 
   
   return (
@@ -15,7 +19,7 @@ export default function Sidebar(props) {
 
         <div className="category">
           <ul>
-            <li className="list"><img src="../../../assets/dp.jpg" alt="" className='icon m5' /><span><h2 style={{marginLeft:"5px"}}>{props.username}</h2></span></li>
+            <li className="list"><img src="../../../assets/dp.jpg" alt="" className='icon m5' /><span><h2 style={{marginLeft:"5px"}}>{state.user.firstName}</h2></span></li>
           </ul>
           <ul className="ul">
             <hr className="bottom" />

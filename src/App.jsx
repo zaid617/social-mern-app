@@ -16,15 +16,12 @@ function App() {
 
   let { state, dispatch } = useContext(GlobalContext);
 
-
-  const baseUrl = "https://social-mern-server-production.up.railway.app/api/v1"
-
   useEffect(() => {
 
     const getProfile = async () => {
       try {
         let response = await axios.get(
-          `${baseUrl}/profile`,
+          `${state.baseUrl}/profile`,
           {
             withCredentials: true,
             headers: {
@@ -93,22 +90,22 @@ function App() {
 
           <Route path="/" element={
 
-            <Home baseUrl={baseUrl}/>
+            <Home/>
           } />
           <Route path="profile" element={
 
-            <Profile baseUrl={baseUrl}/>
+            <Profile/>
 
           } />
-          <Route path="changePass" element={<ChangePass/>} baseUrl={baseUrl} />
+          <Route path="changePass" element={<ChangePass/>} />
           <Route path="*" element={<Navigate to={"/"} replace="true" />} />
 
         </Routes>
         :
         <Routes>
-          <Route path="/" element={<Login  baseUrl={baseUrl}/>} />
-          <Route path="register" element={<Register  baseUrl={baseUrl}/>} />
-          <Route path="resetPassword" element={<Reset  baseUrl={baseUrl} />} />
+          <Route path="/" element={<Login/>} />
+          <Route path="register" element={<Register/>} />
+          <Route path="resetPassword" element={<Reset/>} />
           <Route path="*" element={<Navigate to={"/"} replace="true" />} />
         </Routes>
 

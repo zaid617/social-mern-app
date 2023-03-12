@@ -4,7 +4,7 @@ import { GlobalContext } from '../../context/Context';
 import { Button, TextField } from '@mui/material';
 import axios from "axios";
 
-export default function ChangePass(props) {
+export default function ChangePass() {
 
 
     let { state, dispatch } = useContext(GlobalContext);
@@ -18,7 +18,7 @@ export default function ChangePass(props) {
         e.preventDefault();
 
         try {
-            let response = await axios.post(`${props.baseUrl}/change-password`, {
+            let response = await axios.post(`${state.baseUrl}/change-password`, {
                 currentPassword: currentPassword,
                 password: password
             }, {

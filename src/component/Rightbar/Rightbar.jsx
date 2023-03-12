@@ -7,7 +7,6 @@ export default function Rightbar() {
   return (
     <div className='rightBar'>
       <div className="rightBarbox">
-      <hr />
         <h2 className='mb-5 col'>Sponsored</h2>
         <hr />
         <div className="rightSubBox">
@@ -19,12 +18,10 @@ export default function Rightbar() {
             </div>
           </div>
         </div>
-        <hr />
-
 
         <div className='contact'><h2 className='mb-3 col'>Contacts</h2> <div className="contactIcon"><Search className='conIcon'/><VideoCall className='conIcon'/><MoreHoriz className='conIcon'/></div></div>
-        <div className="rightSubBox">
           <hr />
+        <div className="rightSubBox">
         <div className="dp">
             <img src="../../../assets/dp2.png" alt="" className='dpImg'/>
             <div className="adText">
@@ -53,12 +50,11 @@ export default function Rightbar() {
             </div>
             <span className='online'></span>
           </div>
-          <hr />
           
         </div>
         <div className='contact'><h2 className='mb-3 col'>Groups Conversation</h2> <div className="contactIcon"></div></div>
-        <div className="rightSubBox">
           <hr />
+        <div className="rightSubBox">
         <div className="dp">
             <img src="../../../assets/smit.png" alt="" className='dpImg'/>
             <div className="adText">
