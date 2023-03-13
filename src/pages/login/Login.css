@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 96vh;
 }
 .left{
   padding: 20px;
@@ -46,7 +46,6 @@
 
 .a{
   text-decoration: none;
-  color: #2b84f9;
 }
 .a:hover{
   text-decoration:  underline;
@@ -70,13 +69,13 @@
   background-color: #42b72a;
 }
 
-form{
+.form{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   width: 350px;
-  height: 450px;
+  height: 530px;
   padding: 30px;
   background-color: #ffff;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
@@ -101,9 +100,6 @@ form input{
   .left span{
     font-size: 18px;
   }
-  form{
-    width: 260px;
-  }
 
   .loginBtn{
     padding: 8px;
@@ -113,17 +109,24 @@ form input{
   }
 }
 
-@media screen and (max-width:500px){
+@media screen and (max-width:680px){
   .login{
     flex-direction: column;
+    width: 100%;
   }
+
+  .right{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form{
+    width: 70%;
+  }
+
   .left span{
     display: none;
-  }
-}
-
-@media screen and (max-width:350px){
-  form{
-    width: 200px;
   }
 }

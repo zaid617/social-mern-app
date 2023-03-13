@@ -1,5 +1,4 @@
 .rightBar {
-    flex: 3;
     height: max-content;
     scrollbar-width: thin;
     font-family: 'Times New Roman', Times, serif;
@@ -10,6 +9,7 @@
     overflow-y: hidden;
     position: sticky;
     top: 80px;
+    width: 25%;
 
 
 }

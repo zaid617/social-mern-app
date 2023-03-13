@@ -1,5 +1,5 @@
 .feed {
-    flex: 6;
+    width: 50%;
     margin: 10px;
     padding: 10px;
 }
@@ -17,6 +17,10 @@
     align-items: center;
     justify-content: center;
 
+}
+
+.color6{
+    margin-right: 2px;
 }
 
 .inputBox {
@@ -183,6 +187,11 @@
 @media screen and (max-width:850px) {
     .feed h1 {
         font-size: 2rem;
+    }
+}
+@media screen and (max-width:750px) {
+    .feed {
+        width: 60%;
     }
 }
 

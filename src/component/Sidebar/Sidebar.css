@@ -9,7 +9,7 @@
 }
 
 .sticky {
-    flex: 3;
+    width: 25%;
     position: sticky;
     top: 80px;
     height: 90vh;
@@ -115,11 +115,10 @@
 
 }
 
-@media screen and (max-width: 650px) {
-    .sideBar {
-        flex: 30%;
+@media screen and (max-width:750px) {
+    .sticky {
+        width: 40%;
     }
-
 }
 
 @media screen and (max-width: 550px) {

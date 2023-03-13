@@ -250,7 +250,7 @@ export default function Feed() {
                             </div> : null}
 
                             <div className="titleBox">
-                                <div className="title"><span><ThumbUp className='color6' /><Favorite className='color7' />0 Likes</span>  <span>0 Comments</span></div>
+                                <div className="title"><span><ThumbUp className='color6' />0 Likes</span>  <span>0 Comments</span></div>
                                 {/* <hr /> */}
                                 <div className="date">
                                     <span className='span'><ThumbUp className='com'/>Like</span>
