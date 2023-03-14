@@ -4,6 +4,7 @@ import Navbar from "../../component/Navbar/Navbar"
 import Feed from "../../component/Feed/Feed"
 import Rightbar from "../../component/Rightbar/Rightbar"
 import { GlobalContext } from '../../context/Context';
+import NavMenu from "../../component/navMenu/NavMenu"
 
 export default function Profile() {
   
@@ -20,7 +21,8 @@ export default function Profile() {
           <h3>{state?.user?.firstName}</h3>
         </div>
       </div>
-      <hr />
+
+      <NavMenu/>
 
       <div className="mainCenter">
         <Rightbar/>

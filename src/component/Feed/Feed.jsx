@@ -30,7 +30,7 @@ export default function Feed() {
             try {
                 const response = await axios.get(`${state.baseUrl}/tweets/${state.user._id}`)
                 console.log("response: ", response.data);
-                setPosts(response.data.data)
+                setPosts(response?.data?.data)
     
             } catch (error) {
                 console.log("error in getting all tweets", error);
@@ -196,7 +196,7 @@ export default function Feed() {
             <hr />
 
             {
-                posts.map((eachpost, i) => (
+                posts?.map((eachpost, i) => (
                     <div className="width" key={i}>
                         <div className="post">
 

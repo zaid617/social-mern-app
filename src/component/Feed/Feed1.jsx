@@ -14,9 +14,7 @@ export default function Feed1(props) {
 
     let {state , dispatch} = useContext(GlobalContext)
     let [newPost, setNewPost] = useState(false);
-    let [value, setValue] = useState("");
     let [posts, setPosts] = useState([]);
-    let [file, setFile] = useState(null);
     let [editing, setEditing] = useState({
       editingId: null,
       editingText: ""
@@ -30,7 +28,7 @@ export default function Feed1(props) {
                 const response = await axios.get(`${state.baseUrl}/tweets`)
                 console.log("response: ", response.data);
     
-                setPosts(response.data.data)
+                setPosts(response?.data?.data)
     
             } catch (error) {
                 console.log("error in getting all tweets", error);
@@ -107,7 +105,7 @@ export default function Feed1(props) {
 
                 })
                 .catch((err) => {
-                  console.log(err.response.data.message);
+                  console.log(err.response?.data.message);
                 });
 
         }
@@ -196,7 +194,7 @@ export default function Feed1(props) {
             <hr />
 
             {
-                posts.map((eachpost, i) => (
+                posts?.map((eachpost, i) => (
                     <div className="width" key={i}>
                         <div className="post">
 
