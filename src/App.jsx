@@ -17,7 +17,7 @@ function App() {
   let { state, dispatch } = useContext(GlobalContext);
 
   useEffect(() => {
-
+    
     const getProfile = async () => {
       try {
         let response = await axios.get(
@@ -30,6 +30,7 @@ function App() {
               'Expires': '0',
             }
           });
+
 
         console.log("response: ", response);
 

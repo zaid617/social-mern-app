@@ -40,6 +40,23 @@ export default function Feed1(props) {
 
     }, [newPost])
 
+    const likes = async (id , likes )=>{
+        console.log("likes " ,likes+1);
+        console.log("id" ,id);
+
+        try{
+            const res = await axios.put(`${state.baseUrl}/tweetlike/${id}`,{
+                likes : likes + 1
+            });
+            setNewPost(!newPost);
+            console.log(res);
+
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
+
 
     // posting function
 
@@ -197,7 +214,7 @@ export default function Feed1(props) {
                 posts?.map((eachpost, i) => (
                     <div className="width" key={i}>
                         <div className="post">
-
+{/* 
                             <div className="dropdown menu" onClick={(e) => { myFunction(e) }}>
                                 <MoreHoriz className="dropbtn" style={{ fontSize: 25 }} />
                                 <div id="myDropdown" className="dropdown-content">
@@ -215,7 +232,7 @@ export default function Feed1(props) {
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
 
                             <div className="titleBox1">
@@ -248,10 +265,10 @@ export default function Feed1(props) {
                             </div> : null}
 
                             <div className="titleBox">
-                                <div className="title"><span><ThumbUp className='color6' />0 Likes</span>  <span>0 Comments</span></div>
+                                <div className="title"><span><ThumbUp className='color6' />{eachpost?.likes} Likes</span>  <span>0 Comments</span></div>
                                 {/* <hr /> */}
                                 <div className="date">
-                                    <span className='span'><ThumbUp className='com'/>Like</span>
+                                    <span className='span' onClick={(e)=>{likes(eachpost?._id , eachpost?.likes)}} ><ThumbUp className='com'/>Like</span>
                                     <span className='span'><Comment className='com' />Comments</span>
                                     <span className='span'><Share className='com' />Share</span>
                                 </div>

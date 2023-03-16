@@ -14,7 +14,7 @@ let data = {
    
   :
 
-  "https://social-media-mern-project.netlify.app/api/v1"
+  "https://socail-media-mern.web.app/api/v1"
 
 
 }
